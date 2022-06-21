@@ -1,0 +1,1 @@
+{"version":3,"file":"/dist/index.js","mappings":"mBAEAA,QAAQC,IAAQ,EAAE,I","sources":["webpack:///./ts/index.ts"],"sourcesContent":["import { sum } from './sum'\n\nconsole.log(sum(1,2))\n"],"names":["console","log"],"sourceRoot":""}

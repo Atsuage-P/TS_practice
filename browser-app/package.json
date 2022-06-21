@@ -1,0 +1,23 @@
+{
+  "scripts": {
+    "build": "mix",
+    "watch": "mix watch",
+    "hot": "mix watch --hot",
+    "prod": "mix -p",
+    "serve": "serve ./dist/ -p 3000"
+  },
+  "devDependencies": {
+    "@types/dragula": "^3.7.1",
+    "@types/uuid": "^8.3.4",
+    "browser-sync": "^2.27.10",
+    "browser-sync-webpack-plugin": "^2.3.0",
+    "laravel-mix": "^6.0.47",
+    "serve": "^13.0.2",
+    "ts-loader": "^9.3.0",
+    "typescript": "^4.7.3"
+  },
+  "dependencies": {
+    "dragula": "^3.7.3",
+    "uuid": "^8.3.2"
+  }
+}
