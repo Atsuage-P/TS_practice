@@ -1,17 +1,18 @@
 import { useState } from "react";
 
-type squareProps = {
-  value: string;
+type SquareState = "O" | "X" | null;
+type BoardState = SquareState[];
+type SquareProps = {
+  value: SquareState;
   onSquareClick: () => void;
 }
-
-type boardProps = {
+type BoardProps = {
   xIsNext: boolean;
-  squares: string[];
-  onPlay: (nextSquares: string[]) => void;
+  squares: BoardState;
+  onPlay: (nextSquares: BoardState) => void;
 }
 
-function Square({value, onSquareClick}: squareProps) {
+function Square({value, onSquareClick}: SquareProps) {
   return (
     <button
       className="square"
@@ -22,7 +23,7 @@ function Square({value, onSquareClick}: squareProps) {
   )
 }
 
-function Board({xIsNext, squares, onPlay}: boardProps) {
+function Board({xIsNext, squares, onPlay}: BoardProps) {
   function handleClick(i: number) {
     if (squares[i] || calcurateWinner(squares)) return
     const nextSquares = squares.slice();
@@ -35,7 +36,7 @@ function Board({xIsNext, squares, onPlay}: boardProps) {
   }
 
   const winner = calcurateWinner(squares);
-  let status;
+  let status: string;
   if (winner) {
     status = "Winner: " + winner;
   } else {
@@ -65,12 +66,12 @@ function Board({xIsNext, squares, onPlay}: boardProps) {
 }
 
 export default function Game() {
-  const [history, setHistory] = useState<string[][]>([Array(9).fill("")]);
+  const [history, setHistory] = useState<BoardState[]>([Array(9).fill(null)]);
   const [currentMove, setCurrentMove] = useState(0)
   const xIsNext = currentMove % 2 === 0;
   const currentSquares = history[currentMove];
 
-  function handlePlay(nextSquares: string[]) {
+  function handlePlay(nextSquares: BoardState) {
     const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
     setHistory(nextHistory);
     setCurrentMove(nextHistory.length - 1);
@@ -105,7 +106,7 @@ export default function Game() {
   )
 }
 
-function calcurateWinner(squares: string[]) {
+function calcurateWinner(squares: BoardState) {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
